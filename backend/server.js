@@ -11,14 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 const uriConnStr = process.env.ATLAS_URI;
-const app_env = process.env.APP_ENV;
 
-if (app_env === undefined) {
-  console.log("Please check if repo has .env.app_env files.");
-  process.exit(1);
-}
-
-console.log("Running in " + app_env + " environment.");
 mongoose.connect(uriConnStr, { useNewUrlParser: true, useCreateIndex: true }
 );
 const connection = mongoose.connection;
