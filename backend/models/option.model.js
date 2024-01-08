@@ -6,10 +6,10 @@ const validOptionTypes = ['Buy Call', 'Buy Put', 'Cash Secured Put', 'Covered Ca
 
 const optionSchema= new Schema({
     symbol:{type:String,required:true},
-    strike_price:{type:String,required:true},
-    date_opened:{type:Date,required:false},
-    date_closed:{type:Date,required:false},
-    date_of_expiry:{type:Date,required:true},
+    strike_price:{type:Number,required:true},
+    date_opened:{type:String,required:true},
+    date_closed:{type:String,required:false},
+    date_of_expiry:{type:String,required:true},
     type:{
         type: String,
         validate: {

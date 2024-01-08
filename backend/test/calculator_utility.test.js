@@ -3,22 +3,22 @@ const expect = require('chai').expect;
 
 describe('Calculator utility functions', () => {
 	it('should calculate option return - test1', async () => {
-		const currentDate = await calculator_utility.getOptionReturn(50, 5000);
+		const currentDate = calculator_utility.getOptionReturn(50, 5000);
 		expect(currentDate).to.equal(1);
 	});
 	
 	it('should calculate option return - test2', async () => {
-		const currentDate = await calculator_utility.getOptionReturn(77.94, 2000);
+		const currentDate = calculator_utility.getOptionReturn(77.94, 2000);
 		expect(currentDate).to.equal(3.897);
 	});
 	
 	it('should calculate option return - test3', async () => {
-		const currentDate = await calculator_utility.getOptionReturn(18.3, 2000);
+		const currentDate = calculator_utility.getOptionReturn(18.3, 2000);
 		expect(currentDate).to.equal(0.915);
 	});
 	
 	it('should calculate option return - test4', async () => {
-		const currentDate = await calculator_utility.getOptionReturn(273.6, 49500);
+		const currentDate = calculator_utility.getOptionReturn(273.6, 49500);
 		expect(currentDate).to.equal(0.553);
 	});
 	

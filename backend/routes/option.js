@@ -15,15 +15,15 @@ router.route('/option/add').post((req, res) => {
 	const collateral = req.body.collateral;
 	const is_open = true;
 	const realized_gain_loss = 0;
-	const option_return = calculator_utility.getOptionReturn(premium, collateral);
-	const option_arr = calculator_utility.getOptionARRReturn(date_opened, date_of_expiry, premium, collateral);
+	const option_return = Number(calculator_utility.getOptionReturn(premium, collateral));
+	const option_arr = Number(calculator_utility.getOptionARRReturn(date_opened, date_of_expiry, premium, collateral));
 	
 	const newOption = new Option({
 		symbol, strike_price, date_opened, date_closed, date_of_expiry, type,
 		premium, collateral, is_open, realized_gain_loss, option_return,
 		option_arr
 	});
-	
+
 	newOption.save()
 	.then(() => res.json('Option added successfully !!'))
 	.catch(err => res.status(400).json('Error: ' + err));
@@ -91,13 +91,12 @@ router.route('/option/update/:id').post((req, res) => {
 		option.collateral = req.body.collateral;
 		option.is_open = req.body.is_open;
 		option.realized_gain_loss = req.body.realized_gain_loss;
-		option.option_return = calculator_utility.getOptionReturn(option.premium, option.collateral);
-		option.option_arr = calculator_utility.getOptionARRReturn(option.date_opened, option.date_of_expiry, option.premium, option.collateral);
+		option.option_return = Number(calculator_utility.getOptionReturn(option.premium, option.collateral));
+		option.option_arr = Number(calculator_utility.getOptionARRReturn(option.date_opened, option.date_of_expiry, option.premium, option.collateral));
 		
 		option.save()
 		.then(() =>res.json('Option updated successfully !!'))
 		.catch(err => res.status(400).json('Error'+err));
-		
 	})
 	.catch(err => res.status(400).json('Error'+err));
 });

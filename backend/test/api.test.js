@@ -6,63 +6,59 @@ const app = require('../server');
 chai.use(chaiHttp);
 const expect = chai.expect;
 
+
+// FIXME: Abhishek add something which will create empty db for unit tests all the time
+
+// FIXME: Abhishek add more GET tests
 describe('Options GET API tests', () => {
-	it('should get all options', (done) => {
+	it('GET /option/ on empty database', (done) => {
 		chai.request(app)
 		.get('/option/')
 		.end((err, res) => {
 			expect(res).to.have.status(200);
 			expect(res.body).to.be.an('array');
+			expect(res.body.length).to.be.equal(0);
 			done();
 		});
 	});
-	
-	it('should get all options 1', (done) => {
+
+	it('POST /option/ negative test on empty database', (done) => {
 		chai.request(app)
-		.get('/option/')
+		.post('/option/')
 		.end((err, res) => {
-			expect(res).to.have.status(200);
-			expect(res.body).to.be.an('array');
-			done();
-		});
-	});
-	
-	it('should get all options 2', (done) => {
-		chai.request(app)
-		.get('/option/')
-		.end((err, res) => {
-			expect(res).to.have.status(200);
-			expect(res.body).to.be.an('array');
+			expect(res).to.have.status(404);
 			done();
 		});
 	});
 });
 
+// FIXME: Abhishek add more POST tests
 describe('Options POST API tests', () => {
-	it('should get all options', (done) => {
+	it('POST /option/', (done) => {
+		const newOption = {
+			symbol: 'AAPL',
+			strike_price: 150,
+			date_of_expiry: '01/19/2024',
+			type: 'Cash Secured Put',
+			premium: 120.66,
+			collateral: 15000
+		};
+		
 		chai.request(app)
-		.get('/option/')
+		.post('/option/add')
+		.send(newOption)
 		.end((err, res) => {
 			expect(res).to.have.status(200);
-			expect(res.body).to.be.an('array');
+			expect(res.body).to.equal("Option added successfully !!");
 			done();
 		});
 	});
 });
 
-describe('Options POST API tests', () => {
-	it('should get all options', (done) => {
-		chai.request(app)
-		.get('/option/')
-		.end((err, res) => {
-			expect(res).to.have.status(200);
-			expect(res.body).to.be.an('array');
-			done();
-		});
-	});
+// FIXME: Abhishek add more DELETE tests
+describe('Options DELETE API tests', () => {
+	
 });
-
-
 
 
 
