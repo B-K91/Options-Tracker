@@ -18,7 +18,7 @@ The Options Trade Calculator and Logging Tool is a full-stack application built 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/options-trade-calculator.git
+   git clone https://github.com/abhishekbhave26/Options-Tracker.git
 
 
 2. **Change into the `backend` directory:**
