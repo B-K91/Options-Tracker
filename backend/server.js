@@ -37,6 +37,15 @@ connection.once('open', () => {
 	}
 })
 
+async function cleanupOptions(connection) {
+	const collection = connection.collection("options");
+	const result = await collection.deleteMany({});
+}
+
+if (process.env.NODE_ENV === 'test') {
+	cleanupOptions(connection);
+}
+
 const optionRouter = require('./routes/option');
 
 app.use('/', optionRouter);

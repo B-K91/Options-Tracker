@@ -25,7 +25,10 @@ router.route('/option/add').post((req, res) => {
 	});
 
 	newOption.save()
-	.then(() => res.json('Option added successfully !!'))
+	.then((savedOption) => res.json({
+		message: 'Option added successfully !!',
+		optionId: savedOption._id
+	}))
 	.catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -95,7 +98,10 @@ router.route('/option/update/:id').post((req, res) => {
 		option.option_arr = Number(calculator_utility.getOptionARRReturn(option.date_opened, option.date_of_expiry, option.premium, option.collateral));
 		
 		option.save()
-		.then(() =>res.json('Option updated successfully !!'))
+		.then((savedOption) => res.json({
+			message: 'Option updated successfully !',
+			optionId: savedOption._id
+		}))
 		.catch(err => res.status(400).json('Error'+err));
 	})
 	.catch(err => res.status(400).json('Error'+err));
