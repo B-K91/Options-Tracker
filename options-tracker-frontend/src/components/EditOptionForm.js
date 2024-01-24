@@ -1,31 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import NavBar from './NavBar';
 
 const EditOptionForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isButtonActive, setIsButtonActive] = useState(true);
   const [formData, setFormData] = useState({
     symbol: '',
     strike_price: '',
     date_opened: '',
-    date_closed: '',
     date_of_expiry: '',
     type: '',
     premium: '',
     collateral: '',
-    is_open: '',
-    realized_gain_loss: '',
+    is_open: true,
   });
+
+  const handleButtonClick = () => {
+    setIsButtonActive(!isButtonActive);
+  };
 
   useEffect(() => {
     axios.get(`http://localhost:3000/option/${id}`)
       .then(response => {
         // Set formData with existing option data
-        setFormData(response.data);
+        setFormData({
+          ...response.data,
+          is_open: isButtonActive,
+        });
       })
       .catch(error => console.error('Error fetching option:', error));
-  }, [id]);
+  }, [id, isButtonActive]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -48,6 +55,7 @@ const EditOptionForm = () => {
 
   return (
     <div>
+		 <NavBar />
      <div className="d-flex justify-content-center align-items-center vh-300">
       <form onSubmit={handleSubmit} className="w-50">
         <h1 className="text-center mb-4">Edit Option</h1>
@@ -89,20 +97,6 @@ const EditOptionForm = () => {
             />
           </div>
           <div className="col-md-6">
-            <label htmlFor="date_closed" className="form-label">Date Closed</label>
-            <input
-              type="date"
-              className="form-control"
-              id="date_closed"
-              name="date_closed"
-              value={formData.date_closed}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-
-        <div className="row mb-3">
-          <div className="col-md-6">
             <label htmlFor="date_of_expiry" className="form-label">Date of Expiry</label>
             <input
               type="date"
@@ -113,16 +107,38 @@ const EditOptionForm = () => {
               onChange={handleInputChange}
             />
           </div>
+        </div>
+
+        <div className="row mb-3">
           <div className="col-md-6">
-            <label htmlFor="type" className="form-label">Type</label>
-            <input
-              type="text"
-              className="form-control"
+            <label htmlFor="type" className="form-label">Option Type</label>
+            <select
+              className="form-select"
               id="type"
               name="type"
               value={formData.type}
               onChange={handleInputChange}
-            />
+            >
+            <option value="Buy Call">Buy Call</option>
+            <option value="Buy Put">Buy Put</option>
+            <option value="Cash Secured Put">Cash Secured Put</option>
+            <option value="Covered Call">Covered Call</option>
+            <option value="Credit Put Spread">Credit Put Spread</option>
+            <option value="Credit Call Spread">Credit Call Spread</option>
+            </select>
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="is_open" className="form-label">Option Open ?</label>
+            <button
+              type="button"
+              className={`form-control ${isButtonActive ? 'btn-active' : ''}`}
+              id="is_open"
+              name="is_open"
+              value={formData.is_open}
+              onClick={handleButtonClick}
+            >
+            {isButtonActive ? 'Yes' : 'No'}
+            </button>
           </div>
         </div>
 
@@ -152,32 +168,12 @@ const EditOptionForm = () => {
         </div>
 
         <div className="row mb-3">
-          <div className="col-md-6">
-            <label htmlFor="is_open" className="form-label">Is Open</label>
-            <input
-              type="radio"
-              className="form-control"
-              id="is_open"
-              name="is_open"
-              value={formData.is_open}
-              onChange={handleInputChange}
-            />
+          <div className="col-md-6 d-flex justify-content-center">
+            <button type="submit" className="btn btn-primary">Submit</button>
           </div>
-          <div className="col-md-6">
-            <label htmlFor="realized_gain_loss" className="form-label">Realized Gain/Loss</label>
-            <input
-              type="number"
-              className="form-control"
-              id="realized_gain_loss"
-              name="realized_gain_loss"
-              value={formData.realized_gain_loss}
-              onChange={handleInputChange}
-            />
+          <div className="col-md-6 d-flex justify-content-center">
+            <button type="cancel" className="btn btn-primary">Cancel</button>
           </div>
-        </div>
-        <div className="d-flex justify-content-center align-items-center vh-300">
-        <button type="submit" className="btn btn-primary mb-6">Submit</button>
-        <button type="cancel" className="btn btn-primary mb-6">Cancel</button>
         </div>
       </form>
     </div>

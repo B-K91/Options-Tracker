@@ -38,7 +38,7 @@ const OpenOptionsList = () => {
 	return (
 		<div className="d-flex justify-content-center align-items-center vh-300">
 		<div className="container">
-		<h1 className="text-center mb-4">All Options</h1>
+		<h1 className="text-center mb-4">All Open Options</h1>
 		<div className="row">
 		<div className="col">
 		<table className="table table-striped">

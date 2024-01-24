@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import NavBar from './NavBar';
 
 const ClosedOptionsList = () => {
 	const [options, setOptions] = useState([]);
@@ -11,9 +12,11 @@ const ClosedOptionsList = () => {
 	}, []);
 
 	return (
+		<div>
+		<NavBar />
 		<div className="d-flex justify-content-center align-items-center vh-300">
 		<div className="container">
-		<h1 className="text-center mb-4">All Options</h1>
+		<h1 className="text-center mb-4">All Closed Options</h1>
 		<div className="row">
 		<div className="col">
 		<table className="table table-striped">
@@ -21,14 +24,13 @@ const ClosedOptionsList = () => {
 		<tr>
 		<th scope="col">Symbol</th>
 		<th scope="col">Strike Price</th>
-		<th scope="col">Premium</th>
+		<th scope="col">Realized Profit/Loss</th>
 		<th scope="col">Collateral</th>
 		<th scope="col">Type</th>
 		<th scope="col">Date opened</th>
 		<th scope="col">Date of expiry</th>
 		<th scope="col">Return</th>
 		<th scope="col">ARR</th>
-		<th scope="col">Actions</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -36,7 +38,7 @@ const ClosedOptionsList = () => {
 			<tr key={option._id}>
 			<td>{option.symbol}</td>
 			<td>${option.strike_price}</td>
-			<td>${option.premium}</td>
+			<td>${option.realized_gain_loss}</td>
 			<td>${option.collateral}</td>
 			<td>{option.type}</td>
 			<td>{option.date_opened}</td>
@@ -47,6 +49,7 @@ const ClosedOptionsList = () => {
 			))}
 		</tbody>
 		</table>
+		</div>
 		</div>
 		</div>
 		</div>

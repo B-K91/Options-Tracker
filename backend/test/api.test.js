@@ -105,13 +105,15 @@ describe('Options POST API tests', () => {
 		});
 	});
 
-	const updatedRiotOption = {
+	let updatedRiotOption = {
 		symbol: 'RIOT',
 		strike_price: 16,
 		date_of_expiry: '07/12/2024',
+		date_closed: '07/12/2024',
 		type: 'Buy Call',
 		premium: 227.65,
-		collateral: 1700
+		collateral: 1700,
+		is_open : true
 	};
 	it('POST /option/update/:id RIOT test', (done) => {
 		chai.request(app)
