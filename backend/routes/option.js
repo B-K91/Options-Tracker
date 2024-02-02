@@ -7,9 +7,9 @@ const calculator_utility = require('../common/calculator_utility');
 router.route('/option/add').post((req, res) => {
 	const symbol = req.body.symbol;
 	const strike_price = req.body.strike_price;
-	const date_opened = date_utility.getCurrentDate();
-	const date_closed = req.body.date_of_expiry;
-	const date_of_expiry = req.body.date_of_expiry;
+	const date_opened = date_utility.formatDate(req.body.date_opened);
+	const date_closed = date_utility.formatDate(req.body.date_of_expiry);
+	const date_of_expiry = date_utility.formatDate(req.body.date_of_expiry);
 	const type = req.body.type;
 	const premium = req.body.premium;
 	const collateral = req.body.collateral;
@@ -86,14 +86,18 @@ router.route('/option/update/:id').post((req, res) => {
 	Option.findById(req.params.id)
 	.then(option => {
 		option.strike_price = req.body.strike_price;
-		option.date_closed = req.body.date_closed;
+		option.date_closed = date_utility.formatDate(req.body.date_closed);
+		if(req.body.is_open) {
+			option.date_of_expiry = date_utility.formatDate(req.body.date_of_expiry);
+		} else {
+			option.date_of_expiry = date_utility.formatDate(req.body.date_closed);
+			option.realized_gain_loss = req.body.premium;
+		}
 		option.category = req.body.category;
-		option.date_of_expiry = req.body.date_of_expiry;
 		option.type = req.body.type;
 		option.premium = req.body.premium;
 		option.collateral = req.body.collateral;
 		option.is_open = req.body.is_open;
-		option.realized_gain_loss = req.body.realized_gain_loss;
 		option.option_return = Number(calculator_utility.getOptionReturn(option.premium, option.collateral));
 		option.option_arr = Number(calculator_utility.getOptionARRReturn(option.date_opened, option.date_of_expiry, option.premium, option.collateral));
 		

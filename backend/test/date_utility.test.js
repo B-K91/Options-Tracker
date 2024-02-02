@@ -34,4 +34,24 @@ describe('Date utility functions', () => {
 		const daysDifference = date_utility.getNumberDays(date1, date2);
 		expect(daysDifference).to.equal(112);
 	});
+
+	it('should check if date has passed - 01/01/2024', async () => {
+		const result = date_utility.hasDatePassed('01/01/2024');
+		expect(result).to.equal(true);
+	});
+
+	it('should check if date has passed - 01/01/2100', async () => {
+		const result = date_utility.hasDatePassed('01/01/2100');
+		expect(result).to.equal(false);
+	});
+
+	it('should format date - 01/01/2024', async () => {
+		const formattedDate = date_utility.formatDate('01/01/2024');
+		expect(formattedDate).to.equal('01/01/2024');
+	});
+
+	it('should format date - 2023/07/19', async () => {
+		const formattedDate = date_utility.formatDate('2023/07/19');
+		expect(formattedDate).to.equal('07/19/2023');
+	});
 });

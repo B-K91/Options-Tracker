@@ -18,7 +18,34 @@ var getNumberDays = function(dateString1, dateString2) {
     return diffDays;
 }
 
+var hasDatePassed = function(dateString) {
+    // Convert the MM/DD/YYYY string to a Date object
+    const parts = dateString.split('/');
+    const month = parseInt(parts[0], 10);
+    const day = parseInt(parts[1], 10);
+    const year = parseInt(parts[2], 10);
+    const inputDate = new Date(year, month - 1, day); // Month is zero-based
+  
+    // Get the current date
+    const currentDate = new Date();
+  
+    // Compare the dates
+    return inputDate < currentDate;
+}
+
+const formatDate = (dateString) => {
+    const dateObject = new Date(dateString);
+    return dateObject.toLocaleDateString('en-US', {
+      month: '2-digit',
+      day: '2-digit',
+      year: 'numeric',
+    });
+};
+
+
 module.exports = {
     getCurrentDate,
-    getNumberDays
+    getNumberDays,
+    hasDatePassed,
+    formatDate
 };
