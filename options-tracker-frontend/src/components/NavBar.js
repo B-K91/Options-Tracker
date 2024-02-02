@@ -15,7 +15,7 @@ const NavBar = () => {
                     <Link className="nav-link" to="/closed">Closed Options</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/add-option">Add Option</Link>
+                    <Link className="nav-link" to="/add">Add Option</Link>
                 </li>
                 <li className="nav-item">
                     <Link className="nav-link" to="/options-calculator">Options Calculator</Link>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavBar from './NavBar';
+import { formatDate } from '../utils/date_utility';
 
 const ClosedOptionsList = () => {
 	const [options, setOptions] = useState([]);
@@ -41,8 +42,8 @@ const ClosedOptionsList = () => {
 			<td>${option.realized_gain_loss}</td>
 			<td>${option.collateral}</td>
 			<td>{option.type}</td>
-			<td>{option.date_opened}</td>
-			<td>{option.date_of_expiry}</td>
+			<td>{formatDate(option.date_opened)}</td>
+			<td>{formatDate(option.date_of_expiry)}</td>
 			<td>{option.option_return} %</td>
 			<td>{option.option_arr} %</td>
 			</tr>

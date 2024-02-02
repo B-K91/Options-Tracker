@@ -2,7 +2,7 @@ const mongoose= require('mongoose');
 
 const Schema=mongoose.Schema;
 
-const validOptionTypes = ['Buy Call', 'Buy Put', 'Cash Secured Put', 'Covered Call', 'Credit Put Spread', 'Credit Call Spread']
+const validOptionTypes = ['Buy Call', 'Buy Put', 'Cash Secured Put', 'Covered Call', 'Put Credit Spread', 'Call Credit Spread']
 
 const optionSchema= new Schema({
     symbol:{type:String,required:true},

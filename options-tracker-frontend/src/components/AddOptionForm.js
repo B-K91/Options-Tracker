@@ -3,36 +3,17 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 
-const EditOptionForm = () => {
-  const { id } = useParams();
+const AddOptionForm = () => {
   const navigate = useNavigate();
-  const [isButtonActive, setIsButtonActive] = useState(true);
   const [formData, setFormData] = useState({
     symbol: '',
     strike_price: '',
     date_opened: '',
     date_of_expiry: '',
-    type: '',
+    type: 'Buy Call',
     premium: '',
     collateral: '',
-    is_open: true,
   });
-
-  const handleButtonClick = () => {
-    setIsButtonActive(!isButtonActive);
-  };
-
-  useEffect(() => {
-    axios.get(`http://localhost:3000/option/${id}`)
-      .then(response => {
-        // Set formData with existing option data
-        setFormData({
-          ...response.data,
-          is_open: isButtonActive,
-        });
-      })
-      .catch(error => console.error('Error fetching option:', error));
-  }, [id, isButtonActive]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -44,9 +25,9 @@ const EditOptionForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`http://localhost:3000/option/update/${id}`, formData)
+    axios.post(`http://localhost:3000/option/add`, formData)
       .then(response => {
-        console.log('Option updated successfully!');
+        console.log('Option added successfully!');
         // Redirect to OptionsList
         navigate('/');
       })
@@ -58,7 +39,7 @@ const EditOptionForm = () => {
 		 <NavBar />
      <div className="d-flex justify-content-center align-items-center vh-300">
       <form onSubmit={handleSubmit} className="w-50">
-        <h1 className="text-center mb-4">Edit Option</h1>
+        <h1 className="text-center mb-4">Add Option</h1>
         <div className="row mb-3">
           <div className="col-md-6">
             <label htmlFor="symbol" className="form-label">Symbol</label>
@@ -68,7 +49,7 @@ const EditOptionForm = () => {
               id="symbol"
               name="symbol"
               value={formData.symbol}
-              readOnly // Make the field read-only
+              onChange={handleInputChange}
             />
           </div>
           <div className="col-md-6">
@@ -88,14 +69,15 @@ const EditOptionForm = () => {
           <div className="col-md-6">
             <label htmlFor="date_opened" className="form-label">Date Opened</label>
             <input
-              type="text"
+              type="date"
               className="form-control"
               id="date_opened"
               name="date_opened"
               value={formData.date_opened}
-              readOnly // Make the field read-only
+              onChange={handleInputChange}
             />
           </div>
+
           <div className="col-md-6">
             <label htmlFor="date_of_expiry" className="form-label">Date of Expiry</label>
             <input
@@ -107,39 +89,7 @@ const EditOptionForm = () => {
               onChange={handleInputChange}
             />
           </div>
-        </div>
 
-        <div className="row mb-3">
-          <div className="col-md-6">
-            <label htmlFor="type" className="form-label">Option Type</label>
-            <select
-              className="form-select"
-              id="type"
-              name="type"
-              value={formData.type}
-              onChange={handleInputChange}
-            >
-            <option value="Buy Call">Buy Call</option>
-            <option value="Buy Put">Buy Put</option>
-            <option value="Cash Secured Put">Cash Secured Put</option>
-            <option value="Covered Call">Covered Call</option>
-            <option value="Put Credit Spread">Put Credit Spread</option>
-            <option value="Call Credit Spread">Call Credit Spread</option>
-            </select>
-          </div>
-          <div className="col-md-6">
-            <label htmlFor="is_open" className="form-label">Option Open ?</label>
-            <button
-              type="button"
-              className={`form-control ${isButtonActive ? 'btn-active' : ''}`}
-              id="is_open"
-              name="is_open"
-              value={formData.is_open}
-              onClick={handleButtonClick}
-            >
-            {isButtonActive ? 'Yes' : 'No'}
-            </button>
-          </div>
         </div>
 
         <div className="row mb-3">
@@ -168,6 +118,26 @@ const EditOptionForm = () => {
         </div>
 
         <div className="row mb-3">
+          <div className="col-md-6">
+            <label htmlFor="type" className="form-label">Option Type</label>
+            <select
+              className="form-select"
+              id="type"
+              name="type"
+              value={formData.type}
+              onChange={handleInputChange}
+            >
+            <option value="Buy Call">Buy Call</option>
+            <option value="Buy Put">Buy Put</option>
+            <option value="Cash Secured Put">Cash Secured Put</option>
+            <option value="Covered Call">Covered Call</option>
+            <option value="Put Credit Spread">Put Credit Spread</option>
+            <option value="Call Credit Spread">Call Credit Spread</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="row mb-3">
           <div className="col-md-6 d-flex justify-content-center">
             <button type="submit" className="btn btn-primary">Submit</button>
           </div>
@@ -181,4 +151,4 @@ const EditOptionForm = () => {
   );
 };
 
-export default EditOptionForm;
+export default AddOptionForm;
