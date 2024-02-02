@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
+import { getCurrentDate } from '../utils/date_utility'
 
 const AddOptionForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     symbol: '',
     strike_price: '',
-    date_opened: '',
+    date_opened: getCurrentDate(),
     date_of_expiry: '',
     type: 'Buy Call',
     premium: '',

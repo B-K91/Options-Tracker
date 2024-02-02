@@ -9,6 +9,7 @@ const expect = chai.expect;
 let appleOption = {
 	symbol: 'AAPL',
 	strike_price: 150,
+	date_opened: '01/10/2024',
 	date_of_expiry: '01/19/2024',
 	type: 'Cash Secured Put',
 	premium: 120.66,
@@ -18,6 +19,7 @@ let appleOption = {
 const riotOption = {
 	symbol: 'RIOT',
 	strike_price: 9.5,
+	date_opened: '01/10/2024',
 	date_of_expiry: '01/28/2024',
 	type: 'Cash Secured Put',
 	premium: 35.94,
@@ -27,6 +29,7 @@ const riotOption = {
 const riotOption2 = {
 	symbol: 'RIOT',
 	strike_price: 14,
+	date_opened: '01/10/2024',
 	date_of_expiry: '05/15/2024',
 	type: 'Buy Call',
 	premium: 220.34,
@@ -165,6 +168,7 @@ describe('Options DELETE API tests', () => {
 		const newOption = {
 			symbol: 'AMZN',
 			strike_price: 130,
+			date_opened: '03/01/2024',
 			date_of_expiry: '03/19/2024',
 			type: 'Covered Call',
 			premium: 70,

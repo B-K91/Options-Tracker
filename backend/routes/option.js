@@ -5,7 +5,6 @@ const calculator_utility = require('../common/calculator_utility');
 
 // create an option
 router.route('/option/add').post((req, res) => {
-	console.log(req.body);
 	const symbol = req.body.symbol;
 	const strike_price = req.body.strike_price;
 	const date_opened = date_utility.formatDate(req.body.date_opened);
