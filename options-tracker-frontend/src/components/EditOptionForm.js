@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
-import { formatDateYYYYMMDD } from '../utils/date_utility';
+import { formatDate, formatDateYYYYMMDD } from '../utils/date_utility';
 
 const EditOptionForm = () => {
   const { id } = useParams();
@@ -74,7 +74,7 @@ const EditOptionForm = () => {
       .then(response => {
         console.log('Option updated successfully!');
         // Redirect to OptionsList
-        navigate('/');
+        navigate('/open');
       })
       .catch(error => console.error('Error updating option:', error));
   };
@@ -123,7 +123,7 @@ const EditOptionForm = () => {
               className={`form-control ${validation.symbol ? '' : 'is-invalid'}`}
               id="date_opened"
               name="date_opened"
-              value={formData.date_opened}
+              value={formatDate(formData.date_opened)}
               readOnly // Make the field read-only
             />
           </div>
@@ -223,7 +223,7 @@ const EditOptionForm = () => {
             <button type="submit" className="btn btn-primary">Submit</button>
           </div>
           <div className="col-md-6 d-flex justify-content-center">
-            <button type="button" className="btn btn-primary" onClick={() => navigate('/')}>Cancel</button>
+            <button type="button" className="btn btn-primary" onClick={() => navigate('/open')}>Cancel</button>
           </div>
         </div>
       </form>

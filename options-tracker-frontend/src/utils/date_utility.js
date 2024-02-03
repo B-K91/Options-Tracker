@@ -45,9 +45,9 @@ const formatDate = (dateString) => {
 
 const formatDateYYYYMMDD = (dateString) => {
     const dateObject = new Date(dateString);
-    const year = dateObject.getFullYear();
-    const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
-    const day = dateObject.getDate().toString().padStart(2, '0');
+    const year = dateObject.getUTCFullYear();
+    const month = (dateObject.getUTCMonth() + 1).toString().padStart(2, '0');
+    const day = dateObject.getUTCDate().toString().padStart(2, '0');
     return `${year}-${month}-${day}`;
 };
 

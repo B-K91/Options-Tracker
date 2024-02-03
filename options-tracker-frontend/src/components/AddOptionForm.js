@@ -54,7 +54,7 @@ const AddOptionForm = () => {
       .then(response => {
         console.log('Option added successfully!');
         // Redirect to OptionsList
-        navigate('/');
+        navigate('/open');
       })
       .catch(error => console.error('Error updating option:', error));
   };
@@ -201,7 +201,7 @@ const AddOptionForm = () => {
             <button type="submit" className="btn btn-primary">Submit</button>
           </div>
           <div className="col-md-6 d-flex justify-content-center">
-            <button type="button" className="btn btn-primary" onClick={() => navigate('/')}>Cancel</button>
+            <button type="button" className="btn btn-primary" onClick={() => navigate('/open')}>Cancel</button>
           </div>
         </div>
       </form>

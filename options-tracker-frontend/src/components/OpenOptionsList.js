@@ -61,8 +61,8 @@ const OpenOptionsList = () => {
 		<th scope="col">Premium</th>
 		<th scope="col">Collateral</th>
 		<th scope="col">Option Type</th>
-		<th scope="col">Date opened</th>
-		<th scope="col">Date of expiry</th>
+		<th scope="col">Date Opened</th>
+		<th scope="col">Date of Expiry</th>
 		<th scope="col">Days to Expiry</th>
 		<th scope="col">Return</th>
 		<th scope="col">ARR</th>

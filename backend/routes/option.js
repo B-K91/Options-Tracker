@@ -1,10 +1,20 @@
 const router = require('express').Router();
 let Option = require('../models/option.model');
 const date_utility = require('../../options-tracker-frontend/src/utils/date_utility');
-const calculator_utility = require('../utils/calculator_utility');
+const calculator_utility = require('../../options-tracker-frontend/src/utils/calculator_utility');
+const OPTION_NUM_LIMIT = 10000
 
 // create an option
-router.route('/option/add').post((req, res) => {
+router.route('/option/add').post(async (req, res) => {
+	try {
+		// Check if the trade limit has been reached
+		const totalOptions = await Option.countDocuments();
+		if (totalOptions >= OPTION_NUM_LIMIT) {
+		  return res.status(403).json({ error: 'Trade limit reached (10,000 options).' });
+		}
+	} catch (err) {
+		res.status(400).json('Error: ' + err);
+	}
 	const symbol = req.body.symbol;
 	const strike_price = req.body.strike_price;
 	const date_opened = date_utility.formatDate(req.body.date_opened);
