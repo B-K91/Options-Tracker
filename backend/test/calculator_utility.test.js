@@ -1,4 +1,4 @@
-const calculator_utility = require('../common/calculator_utility');
+const calculator_utility = require('../utils/calculator_utility');
 const expect = require('chai').expect;
 
 describe('Calculator utility functions', () => {

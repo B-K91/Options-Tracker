@@ -1,4 +1,4 @@
-const date_utility = require('../common/date_utility');
+const date_utility = require('../../options-tracker-frontend/src/utils/date_utility');
 const expect = require('chai').expect;
 
 describe('Date utility functions', () => {

@@ -1,4 +1,4 @@
-const date_utility = require('../common/date_utility');
+const date_utility = require('../../options-tracker-frontend/src/utils/date_utility');
 const option_decimal_places = 3;
 
 var getOptionReturn = function(premium, collateral) {

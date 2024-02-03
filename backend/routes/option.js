@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let Option = require('../models/option.model');
-const date_utility = require('../common/date_utility');
-const calculator_utility = require('../common/calculator_utility');
+const date_utility = require('../../options-tracker-frontend/src/utils/date_utility');
+const calculator_utility = require('../utils/calculator_utility');
 
 // create an option
 router.route('/option/add').post((req, res) => {
@@ -86,12 +86,11 @@ router.route('/option/update/:id').post((req, res) => {
 	Option.findById(req.params.id)
 	.then(option => {
 		option.strike_price = req.body.strike_price;
-		option.date_closed = date_utility.formatDate(req.body.date_closed);
-		if(req.body.is_open) {
-			option.date_of_expiry = date_utility.formatDate(req.body.date_of_expiry);
-		} else {
-			option.date_of_expiry = date_utility.formatDate(req.body.date_closed);
+		option.date_closed = date_utility.formatDate(req.body.date_of_expiry);
+		option.date_of_expiry = date_utility.formatDate(req.body.date_of_expiry);
+		if (!req.body.is_open) {
 			option.realized_gain_loss = req.body.premium;
+			option.premium = req.body.premium;
 		}
 		option.category = req.body.category;
 		option.type = req.body.type;

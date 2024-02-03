@@ -53,7 +53,7 @@ const OpenOptionsList = () => {
 		<h1 className="text-center mb-4">All Open Options</h1>
 		<div className="row">
 		<div className="col">
-		<table className="table table-striped">
+		<table className="table table-striped text-center">
 		<thead>
 		<tr>
 		<th scope="col">Symbol</th>

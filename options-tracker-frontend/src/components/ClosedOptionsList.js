@@ -20,14 +20,14 @@ const ClosedOptionsList = () => {
 		<h1 className="text-center mb-4">All Closed Options</h1>
 		<div className="row">
 		<div className="col">
-		<table className="table table-striped">
+		<table className="table table-striped text-center">
 		<thead>
 		<tr>
 		<th scope="col">Symbol</th>
 		<th scope="col">Strike Price</th>
 		<th scope="col">Realized Profit/Loss</th>
 		<th scope="col">Collateral</th>
-		<th scope="col">Type</th>
+		<th scope="col">Option Type</th>
 		<th scope="col">Date opened</th>
 		<th scope="col">Date of expiry</th>
 		<th scope="col">Return</th>
