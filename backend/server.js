@@ -25,9 +25,7 @@ if (process.env.NODE_ENV === 'dev') {
 
 const uriConnStr = process.env.ATLAS_URI;
 
-console.log(uriConnStr);
-
-mongoose.connect(uriConnStr, { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(uriConnStr, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
 
 //use gmail email id for mongo db

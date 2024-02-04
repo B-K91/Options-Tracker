@@ -24,4 +24,6 @@ jobs:
 
       - name: Run tests
         working-directory: backend
+        env:
+          ATLAS_URI: ${{ secrets.ATLAS_URI }}
         run: npm test
