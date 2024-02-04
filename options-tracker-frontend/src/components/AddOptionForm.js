@@ -87,7 +87,7 @@ const AddOptionForm = () => {
             <label htmlFor="strike_price" className="form-label">Strike Price</label>
             <input
               type="number"
-              className={`form-control ${validation.symbol ? '' : 'is-invalid'}`}
+              className={`form-control ${validation.strike_price ? '' : 'is-invalid'}`}
               id="strike_price"
               name="strike_price"
               value={formData.strike_price}
@@ -95,7 +95,7 @@ const AddOptionForm = () => {
               onBlur={handleBlur}
               required
             />
-            {!validation.symbol && (
+            {!validation.strike_price && (
               <div className="invalid-feedback">Strike Price is required.</div>
             )}
           </div>
@@ -106,7 +106,7 @@ const AddOptionForm = () => {
             <label htmlFor="date_opened" className="form-label">Date Opened</label>
             <input
               type="date"
-              className={`form-control ${validation.symbol ? '' : 'is-invalid'}`}
+              className={`form-control ${validation.date_opened ? '' : 'is-invalid'}`}
               id="date_opened"
               name="date_opened"
               value={formData.date_opened}
@@ -114,7 +114,7 @@ const AddOptionForm = () => {
               onBlur={handleBlur}
               required
             />
-            {!validation.symbol && (
+            {!validation.date_opened && (
               <div className="invalid-feedback">Date Opened is required.</div>
             )}
           </div>
@@ -123,7 +123,7 @@ const AddOptionForm = () => {
             <label htmlFor="date_of_expiry" className="form-label">Date of Expiry</label>
             <input
               type="date"
-              className={`form-control ${validation.symbol ? '' : 'is-invalid'}`}
+              className={`form-control ${validation.date_of_expiry ? '' : 'is-invalid'}`}
               id="date_of_expiry"
               name="date_of_expiry"
               value={formData.date_of_expiry}
@@ -131,7 +131,7 @@ const AddOptionForm = () => {
               onBlur={handleBlur}
               required
             />
-            {!validation.symbol && (
+            {!validation.date_of_expiry && (
               <div className="invalid-feedback">Date of Expiry is required.</div>
             )}
           </div>
@@ -142,7 +142,7 @@ const AddOptionForm = () => {
             <label htmlFor="premium" className="form-label">Premium / Profit</label>
             <input
               type="number"
-              className={`form-control ${validation.symbol ? '' : 'is-invalid'}`}
+              className={`form-control ${validation.premium ? '' : 'is-invalid'}`}
               id="premium"
               name="premium"
               value={formData.premium}
@@ -150,7 +150,7 @@ const AddOptionForm = () => {
               onBlur={handleBlur}
               required
             />
-            {!validation.symbol && (
+            {!validation.premium && (
               <div className="invalid-feedback">Premium is required.</div>
             )}
           </div>
@@ -158,7 +158,7 @@ const AddOptionForm = () => {
             <label htmlFor="collateral" className="form-label">Option Collateral / Maximum Loss</label>
             <input
               type="number"
-              className={`form-control ${validation.symbol ? '' : 'is-invalid'}`}
+              className={`form-control ${validation.collateral ? '' : 'is-invalid'}`}
               id="collateral"
               name="collateral"
               value={formData.collateral}
@@ -166,7 +166,7 @@ const AddOptionForm = () => {
               onBlur={handleBlur}
               required
             />
-            {!validation.symbol && (
+            {!validation.collateral && (
               <div className="invalid-feedback">Collateral is required.</div>
             )}
           </div>
@@ -191,7 +191,7 @@ const AddOptionForm = () => {
             <option value="Put Credit Spread">Put Credit Spread</option>
             <option value="Call Credit Spread">Call Credit Spread</option>
             </select>
-            {!validation.symbol && (
+            {!validation.type && (
               <div className="invalid-feedback">Option Type is required.</div>
             )}
           </div>
