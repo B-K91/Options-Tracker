@@ -38,12 +38,11 @@ const EditOptionForm = () => {
         // Set formData with existing option data
         setFormData({
           ...response.data,
-          is_open: isButtonActive,
           date_of_expiry: formatDateYYYYMMDD(response.data.date_of_expiry),
         });
       })
       .catch(error => console.error('Error fetching option:', error));
-  }, [id, isButtonActive]);
+  }, [id]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -70,6 +69,7 @@ const EditOptionForm = () => {
       return;
     }
 
+    formData.is_open = isButtonActive;
     axios.post(`http://localhost:3000/option/update/${id}`, formData)
       .then(response => {
         console.log('Option updated successfully!');
