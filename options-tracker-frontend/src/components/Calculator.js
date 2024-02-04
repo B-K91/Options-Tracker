@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import NavBar from './NavBar';
 import { getOptionReturn, getOptionARRReturn } from '../utils/calculator_utility';
+import Footer from './Footer';
 
 const OptionsReturnCalculator = () => {
   const [premium, setPremium] = useState('');
@@ -90,6 +91,7 @@ const OptionsReturnCalculator = () => {
       </div>
     </div>
     </div>
+    <Footer />
     </div>
   );
 };

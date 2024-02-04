@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import axios from 'axios';
 import { RadialChart, XYPlot, VerticalBarSeries, XAxis, YAxis, ChartLabel } from 'react-vis';
 import 'react-vis/dist/style.css';
+import Footer from './Footer';
 
 const Performance = () => {
   const [closedOptions, setClosedOptions] = useState([]);
@@ -142,6 +143,7 @@ const Performance = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

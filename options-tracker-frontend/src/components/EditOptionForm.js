@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 import { formatDate, formatDateYYYYMMDD } from '../utils/date_utility';
+import Footer from './Footer';
 
 const EditOptionForm = () => {
   const { id } = useParams();
@@ -228,6 +229,7 @@ const EditOptionForm = () => {
         </div>
       </form>
     </div>
+    <Footer />
     </div>
   );
 };

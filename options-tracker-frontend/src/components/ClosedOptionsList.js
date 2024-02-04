@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavBar from './NavBar';
 import { formatDate, getNumberDays } from '../utils/date_utility';
+import Footer from './Footer';
 
 const ClosedOptionsList = () => {
 	const [options, setOptions] = useState([]);
@@ -56,6 +57,7 @@ const ClosedOptionsList = () => {
 		</div>
 		</div>
 		</div>
+		<Footer />
 		</div>
 		);
 	};
