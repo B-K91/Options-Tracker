@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let Option = require('../models/option.model');
-const date_utility = require('../utils/date_utility');
-const calculator_utility = require('../utils/calculator_utility');
+const date_utility = require('../../options-tracker-frontend/src/utils/date_utility');
+const calculator_utility = require('../../options-tracker-frontend/src/utils/calculator_utility');
 const OPTION_NUM_LIMIT = 10000
 
 // create an option
