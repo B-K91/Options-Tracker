@@ -19,9 +19,11 @@ jobs:
           node-version: 14
 
       - name: Install dependencies
+        working-directory: backend
         run: npm install
 
       - name: Run tests
+        working-directory: backend
         env:
           ATLAS_URI: ${{ secrets.ATLAS_URI }}
         run: npm test
