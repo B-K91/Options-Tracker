@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import NavBar from './NavBar';
+import { useNavigate } from 'react-router-dom';
 import { getOptionReturn, getOptionARRReturn } from '../utils/calculator_utility';
 import Footer from './Footer';
 
 const OptionsReturnCalculator = () => {
+  const navigate = useNavigate();
+  const [showAddOptionsButton, setShowAddOptionsButton] = useState(false);
   const [formData, setFormData] = useState({
     startDate: '',
     endDate: '',
@@ -46,7 +49,18 @@ const OptionsReturnCalculator = () => {
 
     setReturnPercentage(getOptionReturn(formData.premium, formData.collateral));
     setArr(getOptionARRReturn(formData.startDate, formData.endDate, formData.premium, formData.collateral));
+    setShowAddOptionsButton(true);
   };
+
+  const clearForm = () => {
+    formData.startDate = '';
+    formData.endDate = '';
+    formData.premium = '';
+    formData.collateral = '';
+    setReturnPercentage(null);
+    setArr(null);
+    setShowAddOptionsButton(false);
+  }
 
   return (
     <div>
@@ -127,7 +141,7 @@ const OptionsReturnCalculator = () => {
           <button className="btn btn-primary" onClick={calculateReturns}>Calculate Returns</button>
         </div>
         <div className="col-md-6 d-flex justify-content-center">
-          <button type="button" className="btn btn-primary" onClick={() => setFormData({ startDate: '', endDate: '', premium: '', collateral: '' })}>Clear Form</button>
+          <button type="button" className="btn btn-primary" onClick={clearForm}>Clear Form</button>
         </div>
       </div>
       <div className="row mb-3">
@@ -135,6 +149,26 @@ const OptionsReturnCalculator = () => {
         <div className="mt-12 mb-6 text-center">
           <p><strong>Return Percentage:</strong> {returnPercentage}%</p>
           <p><strong>Annualized Return (ARR):</strong> {arr}%</p>
+
+          {showAddOptionsButton && (
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                      navigate('/add', {
+                        state: {
+                          prepopulatedData: {
+                            date_opened: formData.startDate,
+                            date_of_expiry: formData.endDate,
+                            premium: formData.premium,
+                            collateral: formData.collateral,
+                          },
+                        },
+                      });
+                    }}
+                  >
+                    Add Option to Tracker
+                  </button>
+                )}
         </div>
       )}
       </div>

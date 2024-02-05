@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import { getCurrentDate } from '../utils/date_utility'
 
 const AddOptionForm = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const location = useLocation();
+  
+  const initialFormData = location.state ? location.state.prepopulatedData : {
     symbol: '',
     strike_price: '',
     date_opened: getCurrentDate(),
-    date_of_expiry: '',
+    date_of_expiry: getCurrentDate(),
     type: 'Buy Call',
     premium: '',
     collateral: '',
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
 
   const [validation, setValidation] = useState({
     symbol: true,

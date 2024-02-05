@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
 import axios from 'axios';
-import { RadialChart, XYPlot, VerticalBarSeries, XAxis, YAxis, ChartLabel } from 'react-vis';
+import { RadialChart, XYPlot, VerticalBarSeries, XAxis, YAxis, ChartLabel, Hint } from 'react-vis';
 import 'react-vis/dist/style.css';
 import Footer from './Footer';
+import RenderBarGraph from './BarGraph';
 
 const Performance = () => {
   const [closedOptions, setClosedOptions] = useState([]);
@@ -25,20 +26,28 @@ const Performance = () => {
 
   const calculateMonthlyPerformance = (options) => {
     const monthlyData = {};
+    
+    // Create an array of all months in the current year
+    const monthsInYear = Array.from({ length: 12 }, (_, index) => {
+      const monthNumber = index + 1;
+      return `${monthNumber < 10 ? '0' : ''}${monthNumber}`;
+    });
+  
+    monthsInYear.forEach((month) => {
+      monthlyData[`${month}-${new Date().getFullYear()}`] = 0;
+    });
   
     options.forEach((option) => {
-      // Extract month and year from the date
       const date = new Date(option.date_closed); // Assuming date_closed is the relevant date
-      const monthYearKey = `${date.getMonth() + 1}-${date.getFullYear()}`;
-  
-      // Initialize the month if not present
-      if (!monthlyData[monthYearKey]) {
-        monthlyData[monthYearKey] = 0;
-      }
-  
+    
+      // Ensure the month part is represented with two digits
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      
+      const monthYearKey = `${month}-${date.getFullYear()}`;
+      
       // Add realized gain/loss to the corresponding month
       monthlyData[monthYearKey] += option.realized_gain_loss;
-    });
+    });    
   
     setMonthlyData(monthlyData);
   };
@@ -79,67 +88,40 @@ const Performance = () => {
     return <RadialChart data={data} width={300} height={300} />;
   };
 
-  const renderBarGraph = () => {
-    const data = Object.keys(monthlyData).map((key) => ({
-      x: key,
-      y: monthlyData[key],
-    }));
-  
-    return (
-      <XYPlot xType="ordinal" width={150} height={400} margin={{ bottom: 70 }}>
-        <VerticalBarSeries data={data} />
-        <XAxis tickLabelAngle={-45} tickFormat={(v) => v.split('-').join('/')} />
-        <YAxis />
-        <ChartLabel
-          text="Months"
-          className="alt-x-label"
-          includeMargin={false}
-          xPercent={0.5}
-          yPercent={1.15}
-        />
-        <ChartLabel
-          text="Realized Gain/Loss"
-          className="alt-y-label"
-          includeMargin={false}
-          xPercent={-0.15}
-          yPercent={0.5}
-          style={{
-            transform: 'rotate(-90)',
-            textAnchor: 'end',
-          }}
-        />
-      </XYPlot>
-    );
-  };
-
   return (
     <div>
       <NavBar />
-      <div className="container mt-4">
+      <div className="container mt-4 mb-3">
         <div className="row mt-4">
-          <div className="col-md-9">
+          <div className="col-md-12">
             <h4>Monthly Performance</h4>
-            {renderBarGraph()}
+            <RenderBarGraph monthlyData={monthlyData} />
+          </div>
+        </div>
+        <div className="row mt-4">
+          <div className="col-md-3">
+            <h4>Stock Performance</h4>
+            {renderPieChart()}
           </div>
           <div className="col-md-3">
             <h4>Stock Performance</h4>
             {renderPieChart()}
           </div>
-        </div>
-        <div className="row mt-4">
-          <div className="col-md-4">
-            <h4>Biggest Winner</h4>
-            {/* Render information about the biggest winner */}
-            {/* Access the details from biggestWinner object */}
-            {biggestWinner && (
-              <p>{`Symbol: ${biggestWinner.symbol}, Gain/Loss: ${biggestWinner.realized_gain_loss}`}</p>
-            )}
-            <h4>Biggest Loser</h4>
-            {/* Render information about the biggest loser */}
-            {/* Access the details from biggestLoser object */}
-            {biggestLoser && (
-              <p>{`Symbol: ${biggestLoser.symbol}, Gain/Loss: ${biggestLoser.realized_gain_loss}`}</p>
-            )}
+          <div className="col-md-3">
+            <h4>Biggest Winner YTD</h4>
+            <ul>
+              { biggestWinner && ['symbol', 'strike_price', 'date_opened', 'date_closed', 'type', 'collateral', 'realized_gain_loss', 'option_return', 'option_arr'].map((key) => (
+                <li key={key}>{`${key}: ${biggestWinner[key]}`}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="col-md-3">
+            <h4>Biggest Loser YTD</h4>
+            <ul>
+              { biggestLoser && ['symbol', 'strike_price', 'date_opened', 'date_closed', 'type', 'collateral', 'realized_gain_loss', 'option_return', 'option_arr'].map((key) => (
+                <li key={key}>{`${key}: ${biggestLoser[key]}`}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
