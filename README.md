@@ -2,11 +2,14 @@
 
 The Options Trade Calculator and Logging Tool is a MERN stack application that enables users to manage and analyze options trades. It provides a user-friendly interface for recording trades, calculates returns, and offers a comprehensive log for tracking and analyzing historical option transactions.
 
-![Screenshot 2024-01-28 194755](https://github.com/abhishekbhave26/instagram-clone/assets/26895533/42307bd6-644a-4423-86eb-1de9d073d36e)
+![image](https://github.com/abhishekbhave26/Options-Tracker/assets/26895533/70a95117-fdd1-493a-8ee4-795dd8a03b00)
 
-![Screenshot 2024-01-28 194755](https://github.com/abhishekbhave26/instagram-clone/assets/26895533/42307bd6-644a-4423-86eb-1de9d073d36e)
+![image](https://github.com/abhishekbhave26/Options-Tracker/assets/26895533/8566100b-85bf-460d-9b77-8a672e5207fb)
 
-![Screenshot 2024-01-28 194755](https://github.com/abhishekbhave26/instagram-clone/assets/26895533/42307bd6-644a-4423-86eb-1de9d073d36e)
+![image](https://github.com/abhishekbhave26/Options-Tracker/assets/26895533/aaee015b-27ef-4afb-baae-6081707aee40)
+
+![image](https://github.com/abhishekbhave26/Options-Tracker/assets/26895533/2c5ded2c-6ace-4e84-8196-fbc978b4efe1)
+
 
 ## Description
 
