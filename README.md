@@ -35,17 +35,29 @@ The Options Trade Calculator and Logging Tool is a full-stack application built 
 
 4. **Set up the environment variables (see [Environment Variables](#environment-variables)).**
 
-5. **Start the development server:**
+5. **Start the backend development server:**
 
     ```bash
     npm start
     ```
 
-6. **Start the prodcution server:**
+6. **Open new terminal and Change into the `options-tracker-frontend` directory:**
 
     ```bash
-    npm run start-prod
+    cd options-tracker-frontend
     ```
+  
+7. **Install dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+8. **Start the frontend:**
+
+    ```bash
+    npm start
+
 
 ## Usage
 
@@ -87,51 +99,3 @@ This project is licensed under the ISC License.
 Abhishek Bhave <br>
 Connect with me on [LinkedIn](https://www.linkedin.com/in/abhishekbhave26/)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Front end
-npm start
-    Starts the development server.
-
-  npm run build
-    Bundles the app into static files for production.
-
-  npm test
-    Starts the test runner.
-
-  npm run eject
-    Removes this tool and copies build dependencies, configuration files
-    and scripts into the app directory. If you do this, you can’t go back!
-
-We suggest that you begin by typing:
-
-  cd options-tracker-frontend
-  npm start
