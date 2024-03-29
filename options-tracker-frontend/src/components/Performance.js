@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
 import axios from 'axios';
-import { RadialChart, XYPlot, VerticalBarSeries, XAxis, YAxis, ChartLabel, Hint } from 'react-vis';
+import { RadialChart } from 'react-vis';
 import 'react-vis/dist/style.css';
 import Footer from './Footer';
 import RenderBarGraph from './BarGraph';
 
 const Performance = () => {
-  const [closedOptions, setClosedOptions] = useState([]);
-  const [monthlyPerformance, setMonthlyPerformance] = useState({});
+  const [, setClosedOptions] = useState([]);
   const [biggestWinner, setBiggestWinner] = useState(null);
   const [biggestLoser, setBiggestLoser] = useState(null);
   const [monthlyData, setMonthlyData] = useState({});
