@@ -78,11 +78,11 @@ The Options Trade Calculator and Logging Tool is a full-stack application built 
     npm run start-prod
     ```
 
-10. **Open new terminal and Change into the `options-tracker-frontend` directory and Start the frontend:**
+10. **Open new terminal and Change into the `options-tracker-frontend/build` directory and Start the frontend:**
 
     ```
-    cd options-tracker-frontend
-    npm start prod
+    cd options-tracker-frontend/build
+    server
     ```
   
 
