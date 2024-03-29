@@ -1,0 +1,15 @@
+.table-header {
+    font-weight: bold;
+    /* Add any other desired styles for table headers */
+}
+
+.arrow-button {
+    padding: 0;
+    margin-left: 5px; /* Adjust as needed */
+    vertical-align: middle; /* Ensure alignment with header text */
+    /* Add any other desired styles for arrow buttons */
+}
+
+.invisible {
+    visibility: hidden; /* Hide the arrow when not applicable */
+}

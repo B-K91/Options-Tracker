@@ -125,6 +125,7 @@ const Performance = () => {
         </div>
       </div>
       <Footer />
+      <div style={{ minHeight: '100px' }}></div>
     </div>
   );
 };
