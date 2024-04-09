@@ -82,7 +82,7 @@ The Options Trade Calculator and Logging Tool is a full-stack application built 
 
     ```
     cd options-tracker-frontend/build
-    server
+    serve
     ```
   
 
